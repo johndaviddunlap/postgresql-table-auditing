@@ -36,7 +36,7 @@ set mydatabase.current_username = 'anonymous';
 It is intended that this approach be used conjunction with HTTP request scoped database transactions similar to the following:
 ```php
 <?php
-  // Perform setup
+  // TODO: Perform setup
 
   try {
     $connection->begin();
