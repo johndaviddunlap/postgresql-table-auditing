@@ -42,7 +42,7 @@ It is intended that this approach be used conjunction with HTTP request scoped d
     $connection->begin();
     $connection->execute("set mydatabase.current_username='myuser'");
 
-    // Make database changes here
+    // TODO: Make database changes here
 
     $connection->commit();
   } catch (Exception $e) {
