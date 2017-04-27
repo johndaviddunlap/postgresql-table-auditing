@@ -43,23 +43,14 @@ class PostgreSQLConnection implements Connection {
     public function begin(){
         $this->dbConnection->beginTransaction();
 
-        $currentUsername = $this->fetchField("select current_setting('intranet.current_username');");
-
-        if ($currentUsername == 'anonymous' && isset($_SESSION["LOGGED_IN_AS"])) {
-            $this->execute("set intranet.current_username='" . $_SESSION["LOGGED_IN_AS"] . "'");
-        } else {
-            $this->execute("set intranet.current_username='anonymous'");
-        }
     }
     public function commit() {
-        $this->execute("set intranet.current_username='anonymous'");
         $this->dbConnection->commit();
     }
     public function rollback() {
         if( $this->dbConnection->inTransaction() === true ) {
             $this->dbConnection->rollBack();
         }
-        $this->execute("set intranet.current_username='anonymous'");
     }
 
     public function execute(string $sql,$args=Array() ) {
